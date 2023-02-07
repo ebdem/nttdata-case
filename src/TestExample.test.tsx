@@ -1,9 +1,9 @@
 
 import { fireEvent, getByText, render } from '@testing-library/react'
-import Ebu from "./Ebu"
+import TestExample from "./TestExample"
 
 it('Click the button', () => {
-  const wrapper = render(<Ebu />)
+  const wrapper = render(<TestExample />)
   const button = wrapper.container.querySelector(
     'button'
   ) as HTMLButtonElement;
