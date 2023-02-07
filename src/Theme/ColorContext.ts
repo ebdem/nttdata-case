@@ -1,7 +1,8 @@
-import React from 'react'
+import React from "react";
 
 interface ColorContextSchema {
-  toggleColorMode: () => void
+  toggleColorMode: () => void;
 }
-
-export const ColorContext = React.createContext<ColorContextSchema>({} as ColorContextSchema)
+export const ColorContext = React.createContext<ColorContextSchema>(
+  {} as ColorContextSchema
+);
