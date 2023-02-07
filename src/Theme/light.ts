@@ -26,7 +26,7 @@ export const lightTheme: ThemeOptions = {
       900: '#404040',
     },
     info: {
-      //?? light: will be calculated from palette.primary.main for cart title background :)
+      //?? light: will be calculated from palette.info.main for cart title background :)
       main: '#E6EEF8',
     },
     common: {

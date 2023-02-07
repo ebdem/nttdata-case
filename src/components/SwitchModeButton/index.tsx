@@ -22,7 +22,7 @@ export const SwitchModeButton = ({ color, ...props }: Props) => {
   const colorMode = useContext(ColorContext)
 
   return (
-    <IconButton {...props} sx={{ ml: 1 }} onClick={colorMode.toggleColorMode} color={color}>
+    <IconButton {...props} sx={{ mr: 1 }} onClick={colorMode.toggleColorMode} color={color}>
       {theme.palette.mode === 'dark' ? <LightIcon /> : <DarkIcon />}
     </IconButton>
   )

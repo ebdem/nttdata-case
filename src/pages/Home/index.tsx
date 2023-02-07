@@ -48,7 +48,7 @@ function Home() {
   }
 
   return (
-    <div className='Home'>
+    <div>
       <div>
         {articles?.map((article) => (
           <div key={article.name}>

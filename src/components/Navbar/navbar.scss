@@ -1,0 +1,24 @@
+.search__input{
+    width: 100%;
+    outline: none;
+    border: none;
+    margin: 0;
+    
+}
+
+.search__input::-webkit-input-placeholder {
+    font-weight: bold;
+    color: #74777A;
+    font-size: 16px;
+}
+.search__input::-moz-placeholder {
+    font-weight: bold;
+    color: #74777A;
+    font-size: 16px;
+}
+.search__input::-ms-input-placeholder {
+    font-weight: bold;
+    color: #74777A;
+    font-size: 16px;
+}
+
