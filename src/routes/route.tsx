@@ -3,7 +3,7 @@ import { createBrowserRouter } from 'react-router-dom'
 import ErrorPage from '../pages/Error'
 import Layout from '../Layout'
 
-const App = lazy(() => import('../App'))
+const Home = lazy(() => import('../pages/Home'))
 const Contact = lazy(() => import('../pages/Contact'))
 const About = lazy(() => import('../pages/About'))
 
@@ -12,7 +12,7 @@ export const router = createBrowserRouter([
     path: '/',
     element: (
       <Layout>
-        <App />
+        <Home />
       </Layout>
     ),
     errorElement: <ErrorPage />,
