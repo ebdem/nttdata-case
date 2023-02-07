@@ -21,7 +21,7 @@ import Select, { SelectChangeEvent } from '@mui/material/Select'
 import Input from '@mui/material/Input'
 import InputAdornment from '@mui/material/InputAdornment'
 import OutlinedInput from '@mui/material/OutlinedInput'
-import {SwitchModeButton} from '../SwitchModeButton'
+import { SwitchModeButton } from '../SwitchModeButton'
 
 interface Props {
   /**
@@ -73,7 +73,7 @@ export default function DrawerAppBar(props: Props) {
       <AppBar
         component='nav'
         sx={({ palette }) => ({
-            backgroundColor:palette.primary.main,
+          backgroundColor: palette.background.default,
         })}
       >
         <Toolbar>
@@ -207,7 +207,7 @@ export default function DrawerAppBar(props: Props) {
               />
             </FormControl>
           </Box>
-          
+
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
             {navItems.map((item) => (
               <Button key={item} sx={{ color: 'blue' }}>

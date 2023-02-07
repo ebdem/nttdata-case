@@ -10,10 +10,8 @@ export const SwitchModeButton = () => {
   const colorMode = useContext(ColorContext)
 
   return (
-    
-      <IconButton sx={{ ml: 1 }} onClick={colorMode.toggleColorMode} color='inherit'>
-        {theme.palette.mode === 'dark' ? <LightIcon /> : <DarkIcon />}
-      </IconButton>
-    
+    <IconButton sx={{ ml: 1 }} onClick={colorMode.toggleColorMode} color='inherit'>
+      {theme.palette.mode === 'dark' ? <LightIcon /> : <DarkIcon />}
+    </IconButton>
   )
 }
