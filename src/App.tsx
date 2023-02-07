@@ -8,8 +8,15 @@ import './App.scss'
 
 function App() {
   const [limit, setLimit] = useState(3)
-  const [updateArticle, { isLoading:isLoadingUpdate, isError: isErrorUpdate, error:errorUpdate, isSuccess:isSuccessUpdate }] =
-    useUpdateNoteMutation();
+  const [
+    updateArticle,
+    {
+      isLoading: isLoadingUpdate,
+      isError: isErrorUpdate,
+      error: errorUpdate,
+      isSuccess: isSuccessUpdate,
+    },
+  ] = useUpdateNoteMutation()
   const {
     isLoading,
     isFetching,
@@ -21,7 +28,6 @@ function App() {
     { page: 1, limit },
     { refetchOnFocus: false, refetchOnReconnect: false },
   )
-
 
   const loading = isLoading || isFetching
 
@@ -41,9 +47,8 @@ function App() {
   }, [loading])
 
   const onSubmitHandler = async (data: any) => {
-    updateArticle(data);
-  };
-
+    updateArticle(data)
+  }
 
   return (
     <div className='App'>
@@ -52,7 +57,9 @@ function App() {
           <div key={article.name}>
             <span>{article.name}</span>
             <img src={article.avatar} alt={article.avatar} />
-            <button onClick={() => onSubmitHandler(article)}>{article.isFavorited ? 'liked' : 'ebu'}</button>
+            <button onClick={() => onSubmitHandler(article)}>
+              {article.isFavorited ? 'liked' : 'ebu'}
+            </button>
           </div>
         ))}
         <a href='https://vitejs.dev' target='_blank'>
@@ -69,11 +76,13 @@ function App() {
           Edit <code>src/App.tsx</code> and save to test HMR
         </p>
       </div>
-      {articles?.filter((article) => article.isFavorited).map((article) => (
-        <div key={article.name}>
-          <span>{article.name}</span>
-        </div>
-      ))}
+      {articles
+        ?.filter((article) => article.isFavorited)
+        .map((article) => (
+          <div key={article.name}>
+            <span>{article.name}</span>
+          </div>
+        ))}
       <p className='read-the-docs'>Click on the Vite and React logos to learn more</p>
       <ToastContainer />
     </div>
