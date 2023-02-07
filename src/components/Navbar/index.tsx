@@ -74,6 +74,8 @@ export default function DrawerAppBar(props: Props) {
         component='nav'
         sx={({ palette }) => ({
           backgroundColor: palette.background.default,
+          boxShadow: 'none',
+          borderBottom: `1px solid ${palette.divider}`,
         })}
       >
         <Toolbar>

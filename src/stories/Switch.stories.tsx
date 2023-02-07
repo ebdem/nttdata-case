@@ -10,11 +10,11 @@ export default {
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: {
     color: {
-        control: {
-            type: 'select',
-            options: ['primary', 'secondary', 'default', 'inherit'],
-        }
-    }
+      control: {
+        type: 'select',
+        options: ['primary', 'secondary', 'default', 'inherit'],
+      },
+    },
   },
 } as ComponentMeta<typeof SwitchModeButton>
 
