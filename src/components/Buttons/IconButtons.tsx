@@ -36,7 +36,8 @@ const IconButton = ({
         margin: margin,
       }}
       aria-label='Search'
-      component='label'
+      component='button'
+      className='icon__button'
     >
       {children}
     </Button>
