@@ -19,10 +19,16 @@
     },
     "plugins": ["react", "react-hooks", "@typescript-eslint", "prettier"],
     "rules": {
+        "react/prop-types": 0,
+        "react/react-in-jsx-scope": 0,
+        "react/no-children-prop": 0
     },
     "settings": {
         "import/resolver": {
           "typescript": {}
+        },
+        "react": {
+          "version": "detect"
         }
     }
 }
