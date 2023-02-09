@@ -10,6 +10,7 @@
     "lint": "eslint \"src/**/*.{js,jsx,ts,tsx,json}\" --quiet",
     "lint:fix": "eslint --fix \"src/**/*.{js,jsx,ts,tsx,json}\"",
     "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc",
+    "format:check": "prettier --check 'src/**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc",
     "storybook": "start-storybook -p 6006 ",
     "build-storybook": "build-storybook",
     "test": "vitest",
