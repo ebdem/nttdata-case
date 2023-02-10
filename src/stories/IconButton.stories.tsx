@@ -5,7 +5,7 @@ import IconButton from '../components/Buttons/IconButtons'
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: 'NttData/Button',
+  title: 'NttData/IconButton',
   component: IconButton,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: {
@@ -28,7 +28,7 @@ export const Default = Template.bind({})
 Default.args = {
   bgColor: '#000',
   color: '#fff',
-  children: 'Search',
+  children: '🦀',
   width: '110px',
   margin: '10px 0',
   padding: '0',
