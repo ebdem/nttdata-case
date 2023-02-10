@@ -2,10 +2,12 @@ import { configureStore } from '@reduxjs/toolkit'
 import { setupListeners } from '@reduxjs/toolkit/query'
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import { articleAPI } from './features/articleAPI'
+import { cartReducer } from './features/articleSlice'
 
 export const store = configureStore({
   reducer: {
     [articleAPI.reducerPath]: articleAPI.reducer,
+    cartReducer,
   },
   devTools: import.meta.env.MODE === 'development',
   middleware: (getDefaultMiddleware) => getDefaultMiddleware({}).concat([articleAPI.middleware]),
