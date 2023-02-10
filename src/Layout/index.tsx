@@ -1,11 +1,17 @@
-import React from 'react'
-import DrawerAppBar from '../components/Navbar'
+import Navbar from '../components/Navbar'
+import MenuBar from "../components/Menu"
+import { Box } from '@mui/system'
 
 const Layout = ({ children }: any) => {
   return (
     <div>
-      <DrawerAppBar />
+      <Navbar />
+      <MenuBar />
+      <Box sx={{
+        marginTop: "150px"
+      }}>
       {children}
+      </Box>
       <h1>footer</h1>
     </div>
   )

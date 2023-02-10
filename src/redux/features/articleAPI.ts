@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { IArticle, IArticleResponse, IMutateArticle } from '../types'
+import { IArticle, IArticleResponse } from '../types'
 import NProgress from 'nprogress'
 
 const BASEURL = 'https://63e12a7865b57fe6065302bd.mockapi.io/articles'

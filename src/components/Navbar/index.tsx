@@ -18,12 +18,10 @@ interface Props {
   window?: () => Window
 }
 
-export default function DrawerAppBar(props: Props) {
+const Navbar = () => {
   const theme = useTheme()
   return (
-    <Box sx={{ display: 'block', marginBottom: '100px' }}>
-      <CssBaseline />
-      <AppBar
+      <Box
         component='nav'
         sx={({ palette }) => ({
           backgroundColor: palette.background.default,
@@ -34,6 +32,10 @@ export default function DrawerAppBar(props: Props) {
           justifyContent: 'space-between',
           alignItems: 'center',
           height: '80px',
+          position: "fixed",
+          top: 0,
+          width: "100%",
+          overflow: "hidden"
         })}
       >
         <Logo />
@@ -67,7 +69,8 @@ export default function DrawerAppBar(props: Props) {
           />
         </div>
         <SwitchModeButton />
-      </AppBar>
-    </Box>
+      </Box>
   )
 }
+
+export default Navbar

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, Suspense } from 'react'
 import 'react-toastify/dist/ReactToastify.css'
 import { createTheme, CssBaseline, PaletteMode, ThemeProvider } from '@mui/material'
 import { RouterProvider } from 'react-router-dom'
@@ -7,7 +7,7 @@ import { router } from './routes/route'
 import { darkTheme } from './Theme/dark'
 import { lightTheme } from './Theme/light'
 import { ColorContext } from './Theme/ColorContext'
-import { SwitchModeButton } from './components/SwitchModeButton'
+import Loading from './components/Loading'
 import './App.scss'
 
 function App() {
@@ -23,11 +23,14 @@ function App() {
     }),
     [],
   )
+
   return (
     <ColorContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
         <CssBaseline enableColorScheme />
+         <Suspense fallback={<Loading />}>
         <RouterProvider router={router} />
+        </Suspense>
         <ToastContainer />
       </ThemeProvider>
     </ColorContext.Provider>
