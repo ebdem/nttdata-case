@@ -8,9 +8,7 @@ import { addToCart, removeItem } from '../../redux/features/articleSlice'
 function Home() {
   const [limit, setLimit] = useState(4)
   const dispatch = useDispatch()
-  const { cartReducer } = useSelector((state: any) => state)
-
-  const cart = cartReducer.cart
+  const cart = useSelector((state: any) => state.cart.cart)
 
   const [
     updateArticle,

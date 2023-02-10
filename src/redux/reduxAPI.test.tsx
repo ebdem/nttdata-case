@@ -5,8 +5,7 @@ const { reducer } = articleAPI
 const reducers = (state: any, action: any) => reducer(state, action)
 
 test('reducers', () => {
-  let state
-  state = reducers(
+  const state = reducers(
     {
       articleAPI: {
         queries: {

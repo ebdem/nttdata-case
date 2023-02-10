@@ -1,13 +1,17 @@
-import { configureStore } from '@reduxjs/toolkit'
+import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import { setupListeners } from '@reduxjs/toolkit/query'
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import { articleAPI } from './features/articleAPI'
-import { cartReducer } from './features/articleSlice'
+import { cartReducer, cartSlice } from './features/articleSlice'
+import { counterReducer, counterSlice } from './features/counterslice'
+
+const reducer = combineReducers({})
 
 export const store = configureStore({
   reducer: {
     [articleAPI.reducerPath]: articleAPI.reducer,
-    cartReducer,
+    [cartSlice.name]: cartReducer,
+    [counterSlice.name]: counterReducer,
   },
   devTools: import.meta.env.MODE === 'development',
   middleware: (getDefaultMiddleware) => getDefaultMiddleware({}).concat([articleAPI.middleware]),
