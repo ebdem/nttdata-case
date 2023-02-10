@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom/client'
 import { Provider } from 'react-redux'
 import { store } from './redux/store'
 import App from './App'
+import 'react-toastify/dist/ReactToastify.css'
+import 'react-slideshow-image/dist/styles.css'
 import './index.scss'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(

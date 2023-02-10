@@ -1,5 +1,5 @@
 import Navbar from '../components/Navbar'
-import MenuBar from "../components/Menu"
+import MenuBar from '../components/Menu'
 import { Box } from '@mui/system'
 
 const Layout = ({ children }: any) => {
@@ -7,10 +7,12 @@ const Layout = ({ children }: any) => {
     <div>
       <Navbar />
       <MenuBar />
-      <Box sx={{
-        marginTop: "150px"
-      }}>
-      {children}
+      <Box
+        sx={{
+          marginTop: '150px',
+        }}
+      >
+        {children}
       </Box>
       <h1>footer</h1>
     </div>

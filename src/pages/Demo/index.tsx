@@ -4,7 +4,6 @@ import NProgress from 'nprogress'
 import { toast } from 'react-toastify'
 import { useGetAllArticlesQuery, useUpdateNoteMutation } from '../../redux/features/articleAPI'
 import { addToCart, removeItem } from '../../redux/features/articleSlice'
-import ImageSlider from '../../components/ImageSlider'
 
 function Home() {
   const [limit, setLimit] = useState(4)
@@ -55,7 +54,6 @@ function Home() {
 
   return (
     <div>
-      <ImageSlider />
       <div>
         {articles?.map((article) => {
           const itemInCart = cart?.find((item: any) => item.id === article.id)

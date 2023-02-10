@@ -1,5 +1,4 @@
 import React, { useState, Suspense } from 'react'
-import 'react-toastify/dist/ReactToastify.css'
 import { createTheme, CssBaseline, PaletteMode, ThemeProvider } from '@mui/material'
 import { RouterProvider } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
@@ -28,8 +27,8 @@ function App() {
     <ColorContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
         <CssBaseline enableColorScheme />
-         <Suspense fallback={<Loading />}>
-        <RouterProvider router={router} />
+        <Suspense fallback={<Loading />}>
+          <RouterProvider router={router} />
         </Suspense>
         <ToastContainer />
       </ThemeProvider>
