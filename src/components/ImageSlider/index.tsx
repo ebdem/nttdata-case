@@ -42,7 +42,7 @@ const dotStyle = {
 const ImageSlider = () => {
   const [activeDot, setActiveDot] = useState<Number | any>(0)
   const date = new Date()
-  const minutes = date.getMinutes()
+  const hours = date.getHours()
 
   const {
     isLoading: isLoadingPhotos,
@@ -51,7 +51,7 @@ const ImageSlider = () => {
     isSuccess: isSuccessPhotos,
     error: errorPhotos,
     data: unsplashPhotos,
-  } = useGetRandomPhotoQuery({ page: minutes, limit: 10, query: 'art' } as any, {
+  } = useGetRandomPhotoQuery({ page: hours, limit: 10, query: 'art' } as any, {
     refetchOnFocus: false,
     refetchOnReconnect: false,
   })

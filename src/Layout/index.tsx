@@ -15,7 +15,7 @@ const Layout = ({ children }: any) => {
       >
         {children}
       </Box>
-     <Footer />
+      <Footer />
     </div>
   )
 }

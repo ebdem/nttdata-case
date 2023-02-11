@@ -39,7 +39,7 @@ const Navbar = () => {
         zIndex: 9999,
       })}
     >
-      <Logo />
+      <Logo isHeader={true} fill='#0059BC' />
       <Box
         sx={{
           display: { xs: 'none', sm: 'flex' },

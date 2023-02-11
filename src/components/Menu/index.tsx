@@ -87,6 +87,8 @@ function MenuBar() {
             {pages.map((page) => (
               <Button
                 key={page}
+                onMouseEnter={() => {console.log("in")}}
+                onMouseLeave={() => {console.log("out")}}
                 onClick={() => {
                   navigate(`/${page.toLowerCase()}`)
                 }}
@@ -98,6 +100,10 @@ function MenuBar() {
                   my: 2,
                   display: 'block',
                   textAlign: 'center',
+                  '&:hover': {
+                    textDecoration:"underline",
+                    
+                  }
                 })}
               >
                 {page}
