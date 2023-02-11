@@ -62,7 +62,7 @@ const Products = () => {
   const dispatch = useDispatch()
   const cart = useSelector((state: any) => state.cart.cart)
 
-  console.log(limit," limit")
+  console.log(limit, ' limit')
 
   const [
     updateArticle,

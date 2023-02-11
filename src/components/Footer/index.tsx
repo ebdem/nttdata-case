@@ -33,7 +33,7 @@ const FooterLeftSide = styled.div<any>`
   display: flex;
   flex-direction: column;
   margin: 65px 0 0 100px;
-  width: ${(props: any) => props.width ? props.width : "100%"};
+  width: ${(props: any) => (props.width ? props.width : '100%')};
 `
 
 const FooterRightSide = styled.div`
@@ -82,9 +82,7 @@ const Footer = () => {
   return (
     <FooterContainer>
       <FooterContainerInside>
-        <FooterLeftSide width={
-          matchesMobile ? "60%" : "50%"
-        }>
+        <FooterLeftSide width={matchesMobile ? '60%' : '50%'}>
           <Logo fill='#fff' />
           <Text color='#fff' fontWeight={400} fontSize='14px' margin='0'>
             Truster Global Innovator
@@ -116,26 +114,28 @@ const Footer = () => {
           </div>
         </FooterLeftSide>
         <FooterRightSide>
-          { matchesTablet ? footerArray.map((item) => (
-            <div
-              style={{
-                textAlign: 'center',
-                marginRight: '100px',
-              }}
-              key={item.title}
-            >
-              <Text color='#fff' fontWeight={500} fontSize='24px' margin='0 0 24px 0'>
-                {item.title}
-              </Text>
-              {item.content.map((content) => (
-                <div key={content}>
-                  <Text color='#fff' fontWeight={400} fontSize='16px' margin='0 0 6px 0'>
-                    {content}
-                  </Text>
-                </div>
-              ))}
-            </div>
-          )) : matchesMobile ? (
+          {matchesTablet ? (
+            footerArray.map((item) => (
+              <div
+                style={{
+                  textAlign: 'center',
+                  marginRight: '100px',
+                }}
+                key={item.title}
+              >
+                <Text color='#fff' fontWeight={500} fontSize='24px' margin='0 0 24px 0'>
+                  {item.title}
+                </Text>
+                {item.content.map((content) => (
+                  <div key={content}>
+                    <Text color='#fff' fontWeight={400} fontSize='16px' margin='0 0 6px 0'>
+                      {content}
+                    </Text>
+                  </div>
+                ))}
+              </div>
+            ))
+          ) : matchesMobile ? (
             <div></div>
           ) : (
             <div
@@ -175,12 +175,14 @@ const Footer = () => {
         <Text color='#fff' fontWeight={400} fontSize='14px' margin='0'>
           +3 9876 765 444
         </Text>
-        {matchesMobile ? ("") : (
+        {matchesMobile ? (
+          ''
+        ) : (
           <div>
-          <InstagramSVG />
-          <FacebookSVG />
-          <LinkedinSVG />
-        </div>
+            <InstagramSVG />
+            <FacebookSVG />
+            <LinkedinSVG />
+          </div>
         )}
       </div>
     </FooterContainer>
