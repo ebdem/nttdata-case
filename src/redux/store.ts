@@ -16,7 +16,8 @@ export const store = configureStore({
     [unsplashAPI.reducerPath]: unsplashAPI.reducer,
   },
   devTools: import.meta.env.MODE === 'development',
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware({}).concat([articleAPI.middleware, unsplashAPI.middleware]),
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({}).concat([articleAPI.middleware, unsplashAPI.middleware]),
 })
 
 setupListeners(store.dispatch)

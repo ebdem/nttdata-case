@@ -34,7 +34,7 @@ const SelectComponent = () => {
 
   return (
     <div>
-      <FormControl sx={{ minWidth: 150 }} size='small'>
+      <FormControl sx={{ display: { xs: 'none', lg: 'flex' } }} size='small'>
         <Select
           labelId='demo-select-small'
           id='demo-select-small'

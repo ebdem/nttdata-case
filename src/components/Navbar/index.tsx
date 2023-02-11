@@ -36,12 +36,13 @@ const Navbar = () => {
         top: 0,
         width: '100%',
         overflow: 'hidden',
+        zIndex: 9999,
       })}
     >
       <Logo />
-      <div
-        style={{
-          display: 'flex',
+      <Box
+        sx={{
+          display: { xs: 'none', sm: 'flex' },
           flexDirection: 'row',
           width: '50%',
         }}
@@ -54,7 +55,7 @@ const Navbar = () => {
             borderRadius: 1,
             display: 'flex',
             flexDirection: 'row',
-            padding: '0 0 0 2px',
+            padding: '2px',
           }}
         >
           <input className='search__input' placeholder='Search...' />
@@ -67,7 +68,7 @@ const Navbar = () => {
           bgColor={theme.palette.primary.main}
           children={<SearchIcon />}
         />
-      </div>
+      </Box>
       <SwitchModeButton />
     </Box>
   )

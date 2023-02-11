@@ -20,15 +20,17 @@ export const unsplashAPI = createApi({
 
   endpoints: (builder) => ({
     getRandomPhoto: builder.query<any, { page: number; limit: number }>({
-      query({ page, limit }) {
+      query({ page, limit, query }: any) {
         return {
-          url: `/photos?client_id=${import.meta.env.VITE_KEY}&page=${page}&limit=${limit}&query=software`,
+          url: `/photos?client_id=${
+            import.meta.env.VITE_KEY
+          }&page=${page}&limit=${limit}&query=${query}`,
         }
       },
       providesTags: (result) =>
         result
           ? [
-              ...result.results.map(({ id } : any) => ({
+              ...result.results.map(({ id }: any) => ({
                 type: 'unsplash' as const,
                 id,
               })),

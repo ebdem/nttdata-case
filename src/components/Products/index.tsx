@@ -1,0 +1,194 @@
+import { useEffect, useState } from 'react'
+import NProgress from 'nprogress'
+import { useDispatch, useSelector } from 'react-redux'
+import { toast } from 'react-toastify'
+import styled from '@emotion/styled'
+import { useTheme } from '@mui/material/styles'
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
+import TrendingFlatIcon from '@mui/icons-material/TrendingFlat'
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
+import DeleteIcon from '@mui/icons-material/Delete'
+import Button from '@mui/material/Button'
+import Grid from '@mui/material/Grid'
+import { addToCart, removeItem } from '../../redux/features/articleSlice'
+import Card from '../Card'
+import { useGetAllArticlesQuery, useUpdateNoteMutation } from '../../redux/features/articleAPI'
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  juatify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 50px 0;
+`
+
+const Header = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+  margin-bottom: 50px;
+`
+
+const Text = styled.p<any>`
+  font-size: ${(props: any) => (props.fontSize ? props.fontSize : '32px')};
+  font-weight: ${(props: any) => (props.fontWeight ? props.fontWeight : '500')};
+  color: ${(props: any) => (props.color ? props.color : 'black')};
+  margin: ${(props: any) => (props.margin ? props.margin : '0')};
+`
+
+const Groups = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+`
+
+const FavoriteButton = styled.button<any>`
+  padding: 10px 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: ${(props: any) => (props.backgroundColor ? props.backgroundColor : 'black')};
+  color: ${(props: any) => (props.color ? props.color : 'white')};
+  cursor: pointer;
+`
+
+const Products = () => {
+  const theme = useTheme()
+  const [limit, setLimit] = useState(3)
+  const dispatch = useDispatch()
+  const cart = useSelector((state: any) => state.cart.cart)
+
+  const onSubmitHandler = async (data: any) => {
+    updateArticle(data)
+  }
+
+  const [
+    updateArticle,
+    {
+      isLoading: isLoadingUpdate,
+      isError: isErrorUpdate,
+      error: errorUpdate,
+      isSuccess: isSuccessUpdate,
+    },
+  ] = useUpdateNoteMutation()
+
+  const {
+    isLoading,
+    isFetching,
+    isError,
+    isSuccess,
+    error,
+    data: articles,
+  } = useGetAllArticlesQuery(
+    { page: 1, limit },
+    { refetchOnFocus: false, refetchOnReconnect: false },
+  )
+
+  const loading = isLoading || isFetching
+
+  useEffect(() => {
+    if (isSuccess) {
+      NProgress.done()
+    }
+    if (isError) {
+      const err = error as any
+      const resMessage = err.data.message || err.data.detail || err.message || err.toString()
+      toast.error(resMessage, {
+        position: 'top-right',
+      })
+      NProgress.done()
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [loading])
+  return (
+    <Container>
+      <Header>
+        <Text color={theme.palette.common.black}>Products</Text>
+        <Groups>
+          <FavoriteBorderIcon />
+          <Text margin='0 30px 0 10px ' fontSize='16px'>
+            {cart?.length ?? 0} Ürün
+          </Text>
+          <FavoriteButton backgroundColor={theme.palette.primary.main}>Beğenilenler</FavoriteButton>
+        </Groups>
+      </Header>
+      <Grid
+        sx={{
+          width: '80%',
+          margin: '0 auto',
+        }}
+        container
+        spacing={2}
+      >
+        {articles?.map((article) => {
+          const itemInCart = cart?.find((item: any) => item.id === article.id)
+          return (
+            <Grid key={article.avatar} item xs={12} sm={6} md={4}>
+              <Card
+                likeIcon={
+                  <FavoriteBorderIcon
+                    style={{
+                      color: article.isFavorited ? 'red' : '#D1D1D1',
+                    }}
+                  />
+                }
+                cartIcon={
+                  itemInCart?.id === article.id ? (
+                    <DeleteIcon
+                      style={{
+                        color: 'red',
+                      }}
+                    />
+                  ) : (
+                    <ShoppingCartIcon
+                      style={{
+                        color: '#D1D1D1',
+                      }}
+                    />
+                  )
+                }
+                likeOnClick={() => onSubmitHandler(article)}
+                cartOnClick={() => {
+                  itemInCart?.id === article.id
+                    ? dispatch(removeItem(article.id))
+                    : dispatch(
+                        addToCart({
+                          id: article.id,
+                          name: article.name,
+                          avatar: article.avatar,
+                          isFavorited: article.isFavorited,
+                          createdAt: article.createdAt,
+                        } as any),
+                      )
+                }}
+                title={article.name}
+                images={article.avatar}
+                price='1.25000'
+              />
+            </Grid>
+          )
+        })}
+      </Grid>
+      <Button
+        disabled={limit === 6}
+        onClick={() => setLimit((limit) => limit + 3)}
+        sx={{
+          marginTop: '50px',
+          padding: '16px 32px',
+        }}
+        variant='contained'
+        endIcon={<TrendingFlatIcon />}
+      >
+        Daha Fazla
+      </Button>
+    </Container>
+  )
+}
+
+export default Products
+
+//?? Emotion Styled Components used in src/components/Products/index.tsx
+//?? onClick={() => dispatch(removeItem(item.id))} remove item from cart

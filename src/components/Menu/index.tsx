@@ -1,14 +1,13 @@
 import * as React from 'react'
 import Box from '@mui/material/Box'
 import Toolbar from '@mui/material/Toolbar'
-import IconButton from '@mui/material/IconButton'
-import Typography from '@mui/material/Typography'
-import Menu from '@mui/material/Menu'
-import MenuIcon from '@mui/icons-material/Menu'
 import Container from '@mui/material/Container'
 import Button from '@mui/material/Button'
-import MenuItem from '@mui/material/MenuItem'
 import { useNavigate } from 'react-router-dom'
+import SearchIcon from '@mui/icons-material/Search'
+import { useTheme } from '@mui/material/styles'
+import IconButton from '../Buttons/IconButtons'
+import '../Navbar/navbar.scss'
 
 const pages = [
   'Products',
@@ -26,24 +25,8 @@ const pages = [
 ]
 
 function MenuBar() {
-  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null)
-  const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null)
+  const theme = useTheme()
   const navigate = useNavigate()
-
-  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElNav(event.currentTarget)
-  }
-  const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElUser(event.currentTarget)
-  }
-
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null)
-  }
-
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null)
-  }
 
   return (
     <Box
@@ -59,50 +42,44 @@ function MenuBar() {
         top: '80px',
         width: '100%',
         overflow: 'hidden',
+        zIndex: 9999,
       })}
     >
       <Container maxWidth='xl'>
         <Toolbar disableGutters>
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-            <IconButton
-              size='large'
-              aria-label='account of current user'
-              aria-controls='menu-Box'
-              aria-haspopup='true'
-              onClick={handleOpenNavMenu}
-              color='inherit'
-            >
-              <MenuIcon />
-            </IconButton>
-            <Menu
-              id='menu-appbar'
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
+          <Box
+            sx={{
+              display: { xs: 'flex', sm: 'none' },
+              flexDirection: 'row',
+              width: '100%',
+              justifyContent: 'center',
+            }}
+          >
+            <Box
               sx={{
-                display: { xs: 'block', md: 'none' },
+                width: '80%',
+                margin: '10px',
+                border: '1px solid #89919A',
+                borderRadius: 1,
+                display: 'flex',
+                flexDirection: 'row',
+                padding: '2px',
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign='center'>{page}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
+              <input className='search__input' placeholder='Search...' />
+            </Box>
+            <IconButton
+              width='110px'
+              margin='10px 0'
+              color={theme.palette.background.default}
+              bgColor={theme.palette.primary.main}
+              children={<SearchIcon />}
+            />
           </Box>
           <Box
             sx={{
               flexGrow: 1,
-              display: { xs: 'none', md: 'flex' },
+              display: { xs: 'none', sm: 'flex' },
               alignItems: 'center',
               justifyContent: 'center',
             }}
@@ -111,7 +88,6 @@ function MenuBar() {
               <Button
                 key={page}
                 onClick={() => {
-                  setAnchorElNav(null)
                   navigate(`/${page.toLowerCase()}`)
                 }}
                 sx={({ palette }) => ({
