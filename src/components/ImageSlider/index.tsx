@@ -33,8 +33,8 @@ const dotStyle = {
   cursor: 'pointer',
   fontSize: '20px',
   position: 'relative',
-  width: '8px',
-  height: '8px',
+  width: '12px',
+  height: '12px',
   borderRadius: '50%',
   opacity: 1,
 }
@@ -51,7 +51,7 @@ const ImageSlider = () => {
     isSuccess: isSuccessPhotos,
     error: errorPhotos,
     data: unsplashPhotos,
-  } = useGetRandomPhotoQuery({ page: minutes, limit: 10, query: 'technology' } as any, {
+  } = useGetRandomPhotoQuery({ page: minutes, limit: 10, query: 'art' } as any, {
     refetchOnFocus: false,
     refetchOnReconnect: false,
   })

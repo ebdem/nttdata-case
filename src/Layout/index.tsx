@@ -1,5 +1,6 @@
 import Navbar from '../components/Navbar'
 import MenuBar from '../components/Menu'
+import Footer from '../components/Footer'
 import { Box } from '@mui/system'
 
 const Layout = ({ children }: any) => {
@@ -14,7 +15,7 @@ const Layout = ({ children }: any) => {
       >
         {children}
       </Box>
-      <h1>footer</h1>
+     <Footer />
     </div>
   )
 }

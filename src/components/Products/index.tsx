@@ -13,6 +13,7 @@ import Grid from '@mui/material/Grid'
 import { addToCart, removeItem } from '../../redux/features/articleSlice'
 import Card from '../Card'
 import { useGetAllArticlesQuery, useUpdateNoteMutation } from '../../redux/features/articleAPI'
+import Loading from '../Loading'
 
 const Container = styled.div`
   display: flex;
@@ -61,9 +62,6 @@ const Products = () => {
   const dispatch = useDispatch()
   const cart = useSelector((state: any) => state.cart.cart)
 
-  const onSubmitHandler = async (data: any) => {
-    updateArticle(data)
-  }
 
   const [
     updateArticle,
@@ -89,6 +87,26 @@ const Products = () => {
 
   const loading = isLoading || isFetching
 
+
+  const onSubmitHandler = async (data: any) => {
+    updateArticle(data)
+    if(isSuccessUpdate){
+      toast.success('Favoriye Eklendi', {
+        position: 'top-right',
+      })
+    }
+    if(isErrorUpdate || errorUpdate){
+      toast.error('Bir sorun Oluştu', {
+        position: 'top-right',
+      })
+    }
+    if(isLoadingUpdate){
+      toast.info('Favoriye ekleniyor...', {
+        position: 'top-right',
+      })
+    }
+  }
+
   useEffect(() => {
     if (isSuccess) {
       NProgress.done()
@@ -103,88 +121,92 @@ const Products = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loading])
-  return (
+
+
+  return isSuccess ? (
     <Container>
-      <Header>
-        <Text color={theme.palette.common.black}>Products</Text>
-        <Groups>
-          <FavoriteBorderIcon />
-          <Text margin='0 30px 0 10px ' fontSize='16px'>
-            {cart?.length ?? 0} Ürün
-          </Text>
-          <FavoriteButton backgroundColor={theme.palette.primary.main}>Beğenilenler</FavoriteButton>
-        </Groups>
-      </Header>
-      <Grid
-        sx={{
-          width: '80%',
-          margin: '0 auto',
-        }}
-        container
-        spacing={2}
-      >
-        {articles?.map((article) => {
-          const itemInCart = cart?.find((item: any) => item.id === article.id)
-          return (
-            <Grid key={article.avatar} item xs={12} sm={6} md={4}>
-              <Card
-                likeIcon={
-                  <FavoriteBorderIcon
+    <Header>
+      <Text color={theme.palette.common.black}>Products</Text>
+      <Groups>
+        <FavoriteBorderIcon />
+        <Text margin='0 30px 0 10px ' fontSize='16px'>
+          {cart?.length ?? 0} Ürün
+        </Text>
+        <FavoriteButton backgroundColor={theme.palette.primary.main}>Beğenilenler</FavoriteButton>
+      </Groups>
+    </Header>
+    <Grid
+      sx={{
+        width: '80%',
+        margin: '0 auto',
+      }}
+      container
+      spacing={2}
+    >
+      {articles?.map((article) => {
+        const itemInCart = cart?.find((item: any) => item.id === article.id)
+        return (
+          <Grid key={article.avatar} item xs={12} sm={6} md={4}>
+            <Card
+              likeIcon={
+                <FavoriteBorderIcon
+                  style={{
+                    color: article.isFavorited ? 'red' : '#D1D1D1',
+                  }}
+                />
+              }
+              cartIcon={
+                itemInCart?.id === article.id ? (
+                  <DeleteIcon
                     style={{
-                      color: article.isFavorited ? 'red' : '#D1D1D1',
+                      color: 'red',
                     }}
                   />
-                }
-                cartIcon={
-                  itemInCart?.id === article.id ? (
-                    <DeleteIcon
-                      style={{
-                        color: 'red',
-                      }}
-                    />
-                  ) : (
-                    <ShoppingCartIcon
-                      style={{
-                        color: '#D1D1D1',
-                      }}
-                    />
-                  )
-                }
-                likeOnClick={() => onSubmitHandler(article)}
-                cartOnClick={() => {
-                  itemInCart?.id === article.id
-                    ? dispatch(removeItem(article.id))
-                    : dispatch(
-                        addToCart({
-                          id: article.id,
-                          name: article.name,
-                          avatar: article.avatar,
-                          isFavorited: article.isFavorited,
-                          createdAt: article.createdAt,
-                        } as any),
-                      )
-                }}
-                title={article.name}
-                images={article.avatar}
-                price='1.25000'
-              />
-            </Grid>
-          )
-        })}
-      </Grid>
-      <Button
-        disabled={limit === 6}
-        onClick={() => setLimit((limit) => limit + 3)}
-        sx={{
-          marginTop: '50px',
-          padding: '16px 32px',
-        }}
-        variant='contained'
-        endIcon={<TrendingFlatIcon />}
-      >
-        Daha Fazla
-      </Button>
-    </Container>
+                ) : (
+                  <ShoppingCartIcon
+                    style={{
+                      color: '#D1D1D1',
+                    }}
+                  />
+                )
+              }
+              likeOnClick={() => onSubmitHandler(article)}
+              cartOnClick={() => {
+                itemInCart?.id === article.id
+                  ? dispatch(removeItem(article.id))
+                  : dispatch(
+                      addToCart({
+                        id: article.id,
+                        name: article.name,
+                        avatar: article.avatar,
+                        isFavorited: article.isFavorited,
+                        createdAt: article.createdAt,
+                      } as any),
+                    )
+              }}
+              title={article.name}
+              images={article.avatar}
+              price='1.25000'
+            />
+          </Grid>
+        )
+      })}
+    </Grid>
+    <Button
+      disabled={limit === 6}
+      onClick={() => setLimit((limit) => limit + 3)}
+      sx={{
+        marginTop: '50px',
+        padding: '16px 32px',
+      }}
+      variant='contained'
+      endIcon={<TrendingFlatIcon />}
+    >
+      Daha Fazla
+    </Button>
+  </Container>
+  ) : (
+   <Loading />
   )
 }
 
