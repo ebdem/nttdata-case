@@ -4,6 +4,7 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import { articleAPI } from './features/articleAPI'
 import { cartReducer, cartSlice } from './features/articleSlice'
 import { counterReducer, counterSlice } from './features/counterslice'
+import { unsplashAPI } from './features/unsplashAPI'
 
 const reducer = combineReducers({})
 
@@ -12,9 +13,10 @@ export const store = configureStore({
     [articleAPI.reducerPath]: articleAPI.reducer,
     [cartSlice.name]: cartReducer,
     [counterSlice.name]: counterReducer,
+    [unsplashAPI.reducerPath]: unsplashAPI.reducer,
   },
   devTools: import.meta.env.MODE === 'development',
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware({}).concat([articleAPI.middleware]),
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware({}).concat([articleAPI.middleware, unsplashAPI.middleware]),
 })
 
 setupListeners(store.dispatch)
