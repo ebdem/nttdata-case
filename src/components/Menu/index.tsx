@@ -8,6 +8,8 @@ import SearchIcon from '@mui/icons-material/Search'
 import { useTheme } from '@mui/material/styles'
 import IconButton from '../Buttons/IconButtons'
 import '../Navbar/navbar.scss'
+import useMediaQuery from '../../hooks/useMediaQuery'
+import ResponsiveMenu from './responsiveMenu'
 
 const pages = [
   'Products',
@@ -27,6 +29,10 @@ const pages = [
 function MenuBar() {
   const theme = useTheme()
   const navigate = useNavigate()
+  const matchesTablet = useMediaQuery('(min-width: 970px)')
+
+  const dataSource = matchesTablet ? pages : pages.slice(0, 5)
+  const responsiveMenuDataSource = matchesTablet ? pages : pages.slice(5, pages.length)
 
   return (
     <Box
@@ -42,7 +48,7 @@ function MenuBar() {
         top: '80px',
         width: '100%',
         overflow: 'hidden',
-        zIndex: 9999,
+        zIndex: 9,
       })}
     >
       <Container maxWidth='xl'>
@@ -84,7 +90,7 @@ function MenuBar() {
               justifyContent: 'center',
             }}
           >
-            {pages.map((page) => (
+            {dataSource.map((page) => (
               <Button
                 key={page}
                 onMouseEnter={() => {
@@ -106,12 +112,16 @@ function MenuBar() {
                   textAlign: 'center',
                   '&:hover': {
                     textDecoration: 'underline',
+                    backgroundColor: 'transparent',
                   },
                 })}
               >
                 {page}
               </Button>
             ))}
+             {
+              !matchesTablet && <ResponsiveMenu dataSource={responsiveMenuDataSource} />
+             }
           </Box>
         </Toolbar>
       </Container>

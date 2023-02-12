@@ -1,4 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
+import { useSelector } from 'react-redux'
+import NProgress from 'nprogress'
+import { toast } from 'react-toastify'
 import { useGetRandomPhotoQuery } from '../../redux/features/unsplashAPI'
 
 const slideStyles = {
@@ -41,6 +44,7 @@ const dotStyle = {
 
 const ImageSlider = () => {
   const [activeDot, setActiveDot] = useState<Number | any>(0)
+  const query = useSelector((state: any) => state.category.category)
   const date = new Date()
   const hours = date.getHours()
 
@@ -58,7 +62,7 @@ const ImageSlider = () => {
     timeoutRef.current = setTimeout(
       () =>
       setActiveDot((prevIndex: number) =>
-          prevIndex === unsplashPhotos?.length - 1 ? 0 : prevIndex + 1
+          prevIndex === unsplashPhotos?.results?.length - 1 ? 0 : prevIndex + 1
         ),
       delay
     );
@@ -75,10 +79,12 @@ const ImageSlider = () => {
     isSuccess,
     error,
     data: unsplashPhotos,
-  } = useGetRandomPhotoQuery({ page: hours, limit: 10, query: 'art' } as any, {
+  } = useGetRandomPhotoQuery({ page: hours, limit: 10, query } as any, {
     refetchOnFocus: false,
     refetchOnReconnect: false,
   })
+
+  const loading = isLoading || isFetching
 
   const slideStylesWidthBackground = {
     ...slideStyles,
@@ -88,6 +94,21 @@ const ImageSlider = () => {
         : '',
     zIndex: -9999,
   }
+
+  useEffect(() => {
+    if (isSuccess) {
+      NProgress.done()
+    }
+    if (isError) {
+      const err = error as any
+      const resMessage = err.data.message || err.data.detail || err.message || err.toString()
+      toast.error(resMessage, {
+        position: 'top-right',
+      })
+      NProgress.done()
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [loading])
 
   return (
     <div

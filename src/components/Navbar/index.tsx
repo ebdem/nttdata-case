@@ -1,14 +1,15 @@
-import * as React from 'react'
-import AppBar from '@mui/material/AppBar'
 import Box from '@mui/material/Box'
-import CssBaseline from '@mui/material/CssBaseline'
 import SearchIcon from '@mui/icons-material/Search'
 import { useTheme } from '@mui/material/styles'
+import { useDispatch } from 'react-redux'
+import { setcategory } from '../../redux/features/categorySlice'
 import { SwitchModeButton } from '../SwitchModeButton'
 import SelectComponent from '../Select'
 import Logo from '../Logo'
 import IconButton from '../Buttons/IconButtons'
 import './navbar.scss'
+import { useState } from 'react'
+import { toast } from 'react-toastify'
 
 interface Props {
   /**
@@ -20,6 +21,12 @@ interface Props {
 
 const Navbar = () => {
   const theme = useTheme()
+  const dispatch = useDispatch()
+  const [inputValue, setInputValue] = useState<string>('')
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setInputValue(event.target.value)
+  }
   return (
     <Box
       component='nav'
@@ -36,7 +43,7 @@ const Navbar = () => {
         top: 0,
         width: '100%',
         overflow: 'hidden',
-        zIndex: 9999,
+        zIndex: 9,
       })}
     >
       <Logo isHeader={true} fill='#0059BC' />
@@ -55,18 +62,25 @@ const Navbar = () => {
             borderRadius: 1,
             display: 'flex',
             flexDirection: 'row',
-            padding: '2px',
+            padding:  {
+              sm: '0 10px',
+              lg: '0 0 0 10px',
+            },
           }}
         >
-          <input className='search__input' placeholder='Search...' />
+          <input onChange={handleChange} value={inputValue} className='search__input' placeholder='Search...' />
           <SelectComponent />
         </Box>
         <IconButton
+          //disabled={inputValue.trim() === ''}
           width='110px'
           margin='10px 0'
           color={theme.palette.background.default}
           bgColor={theme.palette.primary.main}
           children={<SearchIcon />}
+          onClick={() => inputValue.trim() === '' ?  toast.error('Input Boş Bırakılamaz', {
+            position: 'top-right',
+          }) : dispatch(setcategory(inputValue.replace(/\s/g, "")))}
         />
       </Box>
       <SwitchModeButton />

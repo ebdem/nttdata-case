@@ -10,6 +10,8 @@ interface ButtonProps {
   height?: string
   padding?: string
   margin?: string
+  onClick?: () => void
+  disabled?: boolean
 }
 
 const IconButton = ({
@@ -21,6 +23,8 @@ const IconButton = ({
   height,
   margin,
   padding,
+  onClick,
+  disabled,
   ...props
 }: ButtonProps) => {
   return (
@@ -35,6 +39,8 @@ const IconButton = ({
         padding: padding,
         margin: margin,
       }}
+      disabled={disabled}
+      onClick={onClick}
       aria-label='Search'
       component='button'
       className='icon__button'
