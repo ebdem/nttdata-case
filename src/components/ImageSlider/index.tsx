@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useGetRandomPhotoQuery } from '../../redux/features/unsplashAPI'
 
 const slideStyles = {
@@ -44,12 +44,36 @@ const ImageSlider = () => {
   const date = new Date()
   const hours = date.getHours()
 
+  const delay = 2500;
+  const timeoutRef = useRef(null as any);
+
+  function resetTimeout() {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+  }
+
+  useEffect(() => {
+    resetTimeout();
+    timeoutRef.current = setTimeout(
+      () =>
+      setActiveDot((prevIndex: number) =>
+          prevIndex === unsplashPhotos?.length - 1 ? 0 : prevIndex + 1
+        ),
+      delay
+    );
+
+    return () => {
+      resetTimeout();
+    };
+  }, [activeDot]);
+
   const {
-    isLoading: isLoadingPhotos,
-    isFetching: isFetchingPhotos,
-    isError: isErrorPhotos,
-    isSuccess: isSuccessPhotos,
-    error: errorPhotos,
+    isLoading,
+    isFetching,
+    isError,
+    isSuccess,
+    error,
     data: unsplashPhotos,
   } = useGetRandomPhotoQuery({ page: hours, limit: 10, query: 'art' } as any, {
     refetchOnFocus: false,
