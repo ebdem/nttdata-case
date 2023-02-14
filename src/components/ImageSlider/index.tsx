@@ -48,29 +48,29 @@ const ImageSlider = () => {
   const date = new Date()
   const hours = date.getHours()
 
-  const delay = 2500;
-  const timeoutRef = useRef(null as any);
+  const delay = 2500
+  const timeoutRef = useRef(null as any)
 
   function resetTimeout() {
     if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
+      clearTimeout(timeoutRef.current)
     }
   }
 
   useEffect(() => {
-    resetTimeout();
+    resetTimeout()
     timeoutRef.current = setTimeout(
       () =>
-      setActiveDot((prevIndex: number) =>
-          prevIndex === unsplashPhotos?.results?.length - 1 ? 0 : prevIndex + 1
+        setActiveDot((prevIndex: number) =>
+          prevIndex === unsplashPhotos?.results?.length - 1 ? 0 : prevIndex + 1,
         ),
-      delay
-    );
+      delay,
+    )
 
     return () => {
-      resetTimeout();
-    };
-  }, [activeDot]);
+      resetTimeout()
+    }
+  }, [activeDot])
 
   const {
     isLoading,

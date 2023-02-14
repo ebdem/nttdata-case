@@ -3,12 +3,12 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 export const categorySlice = createSlice({
   name: 'category',
   initialState: {
-    category:"art"
+    category: 'art',
   },
   reducers: {
     setcategory: (state, action: PayloadAction<string>) => {
-        state.category = action.payload
-    }
+      state.category = action.payload
+    },
   },
 })
 

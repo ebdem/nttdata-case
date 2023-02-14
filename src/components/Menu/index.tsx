@@ -1,15 +1,17 @@
-import * as React from 'react'
+import { useState, useRef } from 'react'
 import Box from '@mui/material/Box'
 import Toolbar from '@mui/material/Toolbar'
 import Container from '@mui/material/Container'
 import Button from '@mui/material/Button'
-import { useNavigate } from 'react-router-dom'
 import SearchIcon from '@mui/icons-material/Search'
 import { useTheme } from '@mui/material/styles'
+import { useDispatch } from 'react-redux'
 import IconButton from '../Buttons/IconButtons'
+import { setOpen } from '../../redux/features/detailMenuSlice'
 import '../Navbar/navbar.scss'
 import useMediaQuery from '../../hooks/useMediaQuery'
 import ResponsiveMenu from './responsiveMenu'
+import { useOnHoverOutside } from '../../hooks/useOnHoverOutside'
 
 const pages = [
   'Products',
@@ -27,9 +29,23 @@ const pages = [
 ]
 
 function MenuBar() {
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
+  const dispatch = useDispatch()
+  const open = Boolean(anchorEl)
+  const dropdownRef = useRef(null)
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget)
+    dispatch(setOpen(Boolean(event.currentTarget)))
+  }
+  const handleClose = () => {
+    setAnchorEl(null)
+    dispatch(setOpen(false))
+  }
+
+  useOnHoverOutside(dropdownRef, handleClose) // Call the hook
+
   const theme = useTheme()
-  const navigate = useNavigate()
-  const matchesTablet = useMediaQuery('(min-width: 970px)')
+  const matchesTablet = useMediaQuery('(min-width: 1200px)')
 
   const dataSource = matchesTablet ? pages : pages.slice(0, 5)
   const responsiveMenuDataSource = matchesTablet ? pages : pages.slice(5, pages.length)
@@ -89,39 +105,37 @@ function MenuBar() {
               alignItems: 'center',
               justifyContent: 'center',
             }}
+            ref={dropdownRef}
           >
             {dataSource.map((page) => (
               <Button
+                aria-controls={open ? 'account-menu' : undefined}
+                aria-haspopup='true'
+                aria-expanded={open ? 'true' : undefined}
                 key={page}
-                onMouseEnter={() => {
-                  console.log('in')
-                }}
-                onMouseLeave={() => {
-                  console.log('out')
-                }}
-                onClick={() => {
-                  navigate(`/${page.toLowerCase()}`)
-                }}
                 sx={({ palette }) => ({
                   color: palette.grey[500],
                   fontWeight: 500,
                   fontSize: '14px',
                   textTransform: 'capitalize',
                   my: 2,
+                  marginRight: '30px',
                   display: 'block',
                   textAlign: 'center',
                   '&:hover': {
                     textDecoration: 'underline',
+                    textDecorationColor: palette.primary.main,
+                    textDecorationLine: 'underline',
+                    textDecorationThickness: '2px',
                     backgroundColor: 'transparent',
                   },
                 })}
+                onMouseOver={handleClick}
               >
                 {page}
               </Button>
             ))}
-             {
-              !matchesTablet && <ResponsiveMenu dataSource={responsiveMenuDataSource} />
-             }
+            {!matchesTablet && <ResponsiveMenu dataSource={responsiveMenuDataSource} />}
           </Box>
         </Toolbar>
       </Container>

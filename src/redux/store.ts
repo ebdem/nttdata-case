@@ -6,7 +6,7 @@ import { cartReducer, cartSlice } from './features/articleSlice'
 import { counterReducer, counterSlice } from './features/counterslice'
 import { unsplashAPI } from './features/unsplashAPI'
 import { categorySlice } from './features/categorySlice'
-
+import { detailMenu } from './features/detailMenuSlice'
 
 export const store = configureStore({
   reducer: {
@@ -15,6 +15,7 @@ export const store = configureStore({
     [counterSlice.name]: counterReducer,
     [unsplashAPI.reducerPath]: unsplashAPI.reducer,
     [categorySlice.name]: categorySlice.reducer,
+    [detailMenu.name]: detailMenu.reducer,
   },
   devTools: import.meta.env.MODE === 'development',
   middleware: (getDefaultMiddleware) =>

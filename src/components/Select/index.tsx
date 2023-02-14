@@ -37,12 +37,15 @@ const SelectComponent = () => {
 
   return (
     <div>
-      <FormControl sx={{ display: { xs: 'none', lg: 'flex' }, zIndex:999 }} size='small'>
+      <FormControl sx={{ display: { xs: 'none', lg: 'flex' }, zIndex: 999 }} size='small'>
         <Select
           labelId='demo-select-small'
           id='demo-select-small'
           value={age}
-          onChange={(event) => {handleChange(event);  dispatch(setcategory(event.target.value as string))}}
+          onChange={(event) => {
+            handleChange(event)
+            dispatch(setcategory(event.target.value as string))
+          }}
           displayEmpty
           input={<OutlinedInput />}
           renderValue={(selected) => {
@@ -58,7 +61,7 @@ const SelectComponent = () => {
             '& .MuiSelect-select': {
               outline: 0,
             },
-            zIndex:9999,
+            zIndex: 9999,
             '& .MuiSelect-select:focus': {
               outline: 0,
               border: 0,
@@ -85,8 +88,8 @@ const SelectComponent = () => {
                 padding: '20px',
                 zIndex: 999999,
                 '&:hover': {
-                  backgroundColor:palette.common.white ,
-                  color:palette.secondary.main,
+                  backgroundColor: palette.common.white,
+                  color: palette.secondary.main,
                 },
                 '& .MuiMenuItem-root': {
                   padding: '0',

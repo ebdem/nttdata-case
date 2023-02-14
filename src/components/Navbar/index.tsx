@@ -62,13 +62,18 @@ const Navbar = () => {
             borderRadius: 1,
             display: 'flex',
             flexDirection: 'row',
-            padding:  {
+            padding: {
               sm: '0 10px',
               lg: '0 0 0 10px',
             },
           }}
         >
-          <input onChange={handleChange} value={inputValue} className='search__input' placeholder='Search...' />
+          <input
+            onChange={handleChange}
+            value={inputValue}
+            className='search__input'
+            placeholder='Search...'
+          />
           <SelectComponent />
         </Box>
         <IconButton
@@ -78,9 +83,13 @@ const Navbar = () => {
           color={theme.palette.background.default}
           bgColor={theme.palette.primary.main}
           children={<SearchIcon />}
-          onClick={() => inputValue.trim() === '' ?  toast.error('Input Boş Bırakılamaz', {
-            position: 'top-right',
-          }) : dispatch(setcategory(inputValue.replace(/\s/g, "")))}
+          onClick={() =>
+            inputValue.trim() === ''
+              ? toast.error('Input Boş Bırakılamaz', {
+                  position: 'top-right',
+                })
+              : dispatch(setcategory(inputValue.replace(/\s/g, '')))
+          }
         />
       </Box>
       <SwitchModeButton />
