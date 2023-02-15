@@ -1,7 +1,17 @@
 import { IconButton } from '@mui/material'
 import './Card.scss'
 
-export default function Card(props: any) {
+interface CardProps {
+  images: string
+  title: string
+  price: number
+  likeIcon: JSX.Element
+  cartIcon: JSX.Element
+  likeOnClick: () => void
+  cartOnClick: () => void
+}
+
+export default function Card(props: CardProps) {
   return (
     <div className='card'>
       <div className='wrapper'>
