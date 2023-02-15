@@ -12,5 +12,5 @@ export const detailMenu = createSlice({
   },
 })
 
-export const cartReducer = detailMenu.reducer
+export const detailMenuReducer = detailMenu.reducer
 export const { setOpen } = detailMenu.actions

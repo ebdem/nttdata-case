@@ -39,7 +39,6 @@ export const unsplashAPI = createApi({
           : [{ type: 'unsplash', id: 'LIST' }],
 
       onQueryStarted(arg, api) {
-        console.log('onQueryStarted', arg, api)
         NProgress.start()
       },
       keepUnusedDataFor: 5,
