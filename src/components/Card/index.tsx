@@ -5,10 +5,10 @@ interface CardProps {
   images: string
   title: string
   price: number
-  likeIcon: JSX.Element
-  cartIcon: JSX.Element
-  likeOnClick: () => void
-  cartOnClick: () => void
+  likeIcon?: JSX.Element
+  cartIcon?: JSX.Element
+  likeOnClick?: () => void
+  cartOnClick?: () => void
 }
 
 export default function Card(props: CardProps) {
@@ -17,26 +17,30 @@ export default function Card(props: CardProps) {
       <div className='wrapper'>
         <div className='card_img' style={{ backgroundImage: `url(${props.images})` }}></div>
         <div className='heart'>
-          <IconButton
-            style={{
-              padding: '8px',
-              margin: '0 0 10px 0',
-              backgroundColor: 'white',
-            }}
-            onClick={props.likeOnClick}
-          >
-            {props.likeIcon}
-          </IconButton>
-          <IconButton
-            style={{
-              padding: '8px',
-              margin: '0',
-              backgroundColor: 'white',
-            }}
-            onClick={props.cartOnClick}
-          >
-            {props.cartIcon}
-          </IconButton>
+          {props.likeIcon && (
+            <IconButton
+              style={{
+                padding: '8px',
+                margin: '0 0 10px 0',
+                backgroundColor: 'white',
+              }}
+              onClick={props.likeOnClick}
+            >
+              {props.likeIcon}
+            </IconButton>
+          )}
+          {props.cartIcon && (
+            <IconButton
+              style={{
+                padding: '8px',
+                margin: '0',
+                backgroundColor: 'white',
+              }}
+              onClick={props.cartOnClick}
+            >
+              {props.cartIcon}
+            </IconButton>
+          )}
         </div>
         <div className='cardInfo'>
           <h1>{props.title}</h1>

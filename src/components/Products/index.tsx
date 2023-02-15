@@ -3,10 +3,12 @@ import NProgress from 'nprogress'
 import { useDispatch, useSelector } from 'react-redux'
 import { toast } from 'react-toastify'
 import styled from '@emotion/styled'
+import Drawer from '@mui/material/Drawer'
 import { useTheme } from '@mui/material/styles'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
 import TrendingFlatIcon from '@mui/icons-material/TrendingFlat'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
+import CompareArrowsIcon from '@mui/icons-material/CompareArrows'
 import DeleteIcon from '@mui/icons-material/Delete'
 import Button from '@mui/material/Button'
 import Grid from '@mui/material/Grid'
@@ -14,6 +16,7 @@ import { addToCart, removeItem } from '../../redux/features/articleSlice'
 import Card from '../Card'
 import { useGetAllArticlesQuery, useUpdateNoteMutation } from '../../redux/features/articleAPI'
 import Loading from '../Loading'
+import CustomTab from '../Tabs'
 
 const Container = styled.div`
   display: flex;
@@ -59,6 +62,7 @@ const FavoriteButton = styled.button<any>`
 const Products = () => {
   const theme = useTheme()
   const [limit, setLimit] = useState(3)
+  const [open, setOpen] = useState(false)
   const dispatch = useDispatch()
   const cart = useSelector((state: any) => state.cart.cart)
 
@@ -85,6 +89,8 @@ const Products = () => {
   )
 
   const loading = isLoading || isFetching
+
+  const liked = articles?.filter((article) => article.isFavorited)
 
   const onSubmitHandler = async (data: any) => {
     updateArticle(data)
@@ -131,9 +137,20 @@ const Products = () => {
         <Groups>
           <FavoriteBorderIcon />
           <Text margin='0 30px 0 10px ' fontSize='16px'>
+            {liked?.length ?? 0} Ürün
+          </Text>
+          <ShoppingCartIcon />
+          <Text margin='0 30px 0 10px ' fontSize='16px'>
             {cart?.length ?? 0} Ürün
           </Text>
-          <FavoriteButton backgroundColor={theme.palette.primary.main}>Beğenilenler</FavoriteButton>
+          <FavoriteButton
+            onClick={() => {
+              setOpen(true)
+            }}
+            backgroundColor={theme.palette.primary.main}
+          >
+            <FavoriteBorderIcon /> <CompareArrowsIcon color='primary' /> <ShoppingCartIcon />
+          </FavoriteButton>
         </Groups>
       </Header>
       <Grid
@@ -187,8 +204,16 @@ const Products = () => {
                 }}
                 title={article.name}
                 images={article.avatar}
-                price='1.25000'
+                price={12000}
               />
+              <Drawer
+                transitionDuration={500}
+                anchor={'right'}
+                open={open}
+                onClose={() => setOpen(false)}
+              >
+                <CustomTab articles={liked} onSubmitHandler={onSubmitHandler} />
+              </Drawer>
             </Grid>
           )
         })}

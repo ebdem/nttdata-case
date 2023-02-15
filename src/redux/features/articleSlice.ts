@@ -23,8 +23,11 @@ export const cartSlice = createSlice({
       const removeItemByID = state.cart.filter((item: IArticle) => item.id !== action.payload)
       state.cart = removeItemByID
     },
+    removeAll: (state) => {
+      state.cart = []
+    },
   },
 })
 
 export const cartReducer = cartSlice.reducer
-export const { addToCart, removeItem } = cartSlice.actions
+export const { addToCart, removeItem, removeAll } = cartSlice.actions

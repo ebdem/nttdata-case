@@ -33,7 +33,7 @@ const Template: ComponentStory<typeof Card> = (args) => <Card {...args} />
 export const Default = Template.bind({})
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 Default.args = {
-  images:'#',
+  images: '#',
   title: 'Lorem ipsum dolor sit amet consectetur',
   price: 100,
 }
