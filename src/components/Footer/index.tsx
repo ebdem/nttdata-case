@@ -1,9 +1,9 @@
 import styled from '@emotion/styled'
 import { useTheme } from '@mui/material/styles'
+import { useMediaQuery } from '@mui/material'
 import Logo from '../Logo'
 import { InstagramSVG, FacebookSVG, LinkedinSVG } from './footerSVG'
 import { footerArray } from '../../data/footerLinks'
-import useMediaQuery from '../../hooks/useMediaQuery'
 
 const FooterContainer = styled.footer`
   display: flex;
@@ -77,7 +77,7 @@ const Button = styled.button<any>`
   cursor: pointer;
 `
 
-const Footer = () => {
+const Footer = ({ text = 'Truster Global Innovator' }) => {
   const matchesTablet = useMediaQuery('(min-width: 1200px)')
   const matchesMobile = useMediaQuery('(max-width: 700px)')
   const theme = useTheme()
@@ -87,7 +87,7 @@ const Footer = () => {
         <FooterLeftSide width={matchesMobile ? '60%' : '50%'}>
           <Logo fill='#fff' />
           <Text color='#fff' fontWeight={400} fontSize='14px' margin='0'>
-            Truster Global Innovator
+            {text}
           </Text>
           <div
             style={{
