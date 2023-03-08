@@ -111,7 +111,12 @@ const Footer = () => {
               display: 'flex',
             }}
           >
-            <Input bgColor={theme.palette.background.default} color={theme.palette.text.primary} type='text' placeholder='Email' />
+            <Input
+              bgColor={theme.palette.background.default}
+              color={theme.palette.text.primary}
+              type='text'
+              placeholder='Email'
+            />
             <Button>Sign Up</Button>
           </div>
         </FooterLeftSide>

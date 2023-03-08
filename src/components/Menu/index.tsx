@@ -152,7 +152,7 @@ function MenuBar() {
         onClose={handleClose}
         MenuListProps={{ onMouseLeave: handleClose }}
       >
-       <DetailMenu />
+        <DetailMenu />
       </Menu>
     </div>
   )

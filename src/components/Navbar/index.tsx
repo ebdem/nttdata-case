@@ -96,15 +96,19 @@ const Navbar = () => {
           }
         />
       </Box>
-      <Box sx={{
-        display: "flex",
-      }}>
-      <SwitchModeButton />
-      <Box sx={{
-        display: { xs: 'flex', sm: 'none' },
-      }}>
-      <DrawerComponent />
-      </Box>
+      <Box
+        sx={{
+          display: 'flex',
+        }}
+      >
+        <SwitchModeButton />
+        <Box
+          sx={{
+            display: { xs: 'flex', sm: 'none' },
+          }}
+        >
+          <DrawerComponent />
+        </Box>
       </Box>
     </Box>
   )

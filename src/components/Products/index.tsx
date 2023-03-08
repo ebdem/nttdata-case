@@ -136,7 +136,7 @@ const Products = () => {
         <Text color={theme.palette.text.primary}>Content title goes here</Text>
         <Groups>
           <FavoriteBorderIcon />
-          <Text margin='0 30px 0 10px ' fontSize='16px' color={theme.palette.text.primary} >
+          <Text margin='0 30px 0 10px ' fontSize='16px' color={theme.palette.text.primary}>
             {liked?.length ?? 0} Ürün
           </Text>
           <ShoppingCartIcon />

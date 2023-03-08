@@ -22,10 +22,10 @@ export const darkTheme: ThemeOptions = {
       800: '#595959',
       900: '#404040',
     },
-    text:{
-      primary:"#FFFFFF",
-      secondary:"#F4F5F6",
-    }
+    text: {
+      primary: '#FFFFFF',
+      secondary: '#F4F5F6',
+    },
   },
 }
 

@@ -7,6 +7,11 @@
    test: {
      globals: true,
      environment: 'jsdom',
-     setupFiles: ['src/setupTest.ts']
+     setupFiles: ['src/setupTest.ts'],
+     coverage:{
+        provider:'c8',
+        reporter: ['text', 'json', 'html'],
+        
+     }
    },
  })

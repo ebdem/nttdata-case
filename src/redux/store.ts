@@ -6,7 +6,7 @@ import { cartReducer, cartSlice } from './features/articleSlice'
 import { counterReducer, counterSlice } from './features/counterslice'
 import { unsplashAPI } from './features/unsplashAPI'
 import { categorySlice, categoryReducer } from './features/categorySlice'
-import { detailMenu,detailMenuReducer } from './features/detailMenuSlice'
+import { detailMenu, detailMenuReducer } from './features/detailMenuSlice'
 
 export const store = configureStore({
   reducer: {

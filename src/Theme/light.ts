@@ -34,10 +34,10 @@ export const lightTheme: ThemeOptions = {
       white: '#FFFFFF',
     },
     divider: '#89919A',
-    text:{
-      primary:"#000000",
-      secondary:"#202020",
-    }
+    text: {
+      primary: '#000000',
+      secondary: '#202020',
+    },
   },
 }
 

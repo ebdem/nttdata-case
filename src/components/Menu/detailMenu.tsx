@@ -15,94 +15,93 @@ const Text = styled.p<any>`
 const DetailMenu = () => {
   const theme = useTheme()
   return (
-   <div>
-     <Box
-      sx={({ palette }) => ({
-        zIndex: 1000,
-        height: '400px',
-        backgroundColor: palette.grey[100],
-        display: 'flex',
-        justifyContent: 'space-around',
-      })}
-    >
+    <div>
       <Box
-        sx={{
+        sx={({ palette }) => ({
+          zIndex: 1000,
+          height: '400px',
+          backgroundColor: palette.grey[100],
           display: 'flex',
-        }}
+          justifyContent: 'space-around',
+        })}
       >
         <Box
           sx={{
-            margin:'30px 80px 0 40px'
+            display: 'flex',
           }}
         >
-          <Text
-            color={theme.palette.text.primary}
-            fontWeight={500}
-            fontSize='14px'
-            margin="0 0 12px 0"
+          <Box
+            sx={{
+              margin: '30px 80px 0 40px',
+            }}
           >
-            Header
-          </Text>
-          {Array.from(Array(8).keys()).map((item, index) => (
-            <Text 
-            key={index}
-            color={theme.palette.text.primary}
-            fontWeight={400}
-            fontSize='14px'
-            margin="0 0 12px 0"
+            <Text
+              color={theme.palette.text.primary}
+              fontWeight={500}
+              fontSize='14px'
+              margin='0 0 12px 0'
+            >
+              Header
+            </Text>
+            {Array.from(Array(8).keys()).map((item, index) => (
+              <Text
+                key={index}
+                color={theme.palette.text.primary}
+                fontWeight={400}
+                fontSize='14px'
+                margin='0 0 12px 0'
+              >
+                SubHeader
+              </Text>
+            ))}
+          </Box>
+          <Box
+            sx={{
+              margin: '30px 80px 0 40px',
+            }}
           >
-            SubHeader
-          </Text>
-          ))}
+            <Text
+              color={theme.palette.text.primary}
+              fontWeight={500}
+              fontSize='14px'
+              margin='0 0 12px 0'
+            >
+              Header
+            </Text>
+            {Array.from(Array(8).keys()).map((item, index) => (
+              <Text
+                key={index}
+                color={theme.palette.text.primary}
+                fontWeight={400}
+                fontSize='14px'
+                margin='0 0 12px 0'
+              >
+                SubHeader
+              </Text>
+            ))}
+          </Box>
+          <Box
+            sx={{
+              display: 'flex',
+              width: '70%',
+              height: '100%',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <img
+              style={{
+                width: 'auto',
+                height: '40vh',
+                margin: 'auto 20px',
+              }}
+              src='menu-photo.jpg'
+              alt='state'
+            />
+          </Box>
         </Box>
-        <Box
-          sx={{
-            margin:'30px 80px 0 40px'
-          }}
-        >
-          <Text
-            color={theme.palette.text.primary}
-            fontWeight={500}
-            fontSize='14px'
-            margin="0 0 12px 0"
-          >
-            Header
-          </Text>
-          {Array.from(Array(8).keys()).map((item, index) => (
-            <Text 
-            key={index}
-            color={theme.palette.text.primary}
-            fontWeight={400}
-            fontSize='14px'
-            margin="0 0 12px 0"
-          >
-            SubHeader
-          </Text>
-          ))}
-        </Box>
-        <Box
-        sx={{
-          display: 'flex',
-          width: '70%',
-          height: '100%',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <img
-          style={{
-            width: 'auto',
-            height: '40vh',
-            margin: 'auto 20px',
-          }}
-          src='menu-photo.jpg'
-          alt='state'
-        />
       </Box>
-      </Box>
-     
-    </Box>
-   </div>
+    </div>
   )
 }
 
