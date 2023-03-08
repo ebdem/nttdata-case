@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux'
 import { setcategory } from '../../redux/features/categorySlice'
 import { SwitchModeButton } from '../SwitchModeButton'
 import SelectComponent from '../Select'
+import DrawerComponent from '../Drawer'
 import Logo from '../Logo'
 import IconButton from '../Buttons/IconButtons'
 import './navbar.scss'
@@ -73,6 +74,9 @@ const Navbar = () => {
             value={inputValue}
             className='search__input'
             placeholder='Search...'
+            style={{
+              background: 'transparent',
+            }}
           />
           <SelectComponent />
         </Box>
@@ -80,8 +84,8 @@ const Navbar = () => {
           //disabled={inputValue.trim() === ''}
           width='110px'
           margin='10px 0'
-          color={theme.palette.background.default}
-          bgColor={theme.palette.primary.main}
+          color={theme.palette.common.white}
+          bgColor={theme.palette.mode === 'dark' ? 'grey' : theme.palette.primary.main}
           children={<SearchIcon />}
           onClick={() =>
             inputValue.trim() === ''
@@ -92,7 +96,16 @@ const Navbar = () => {
           }
         />
       </Box>
+      <Box sx={{
+        display: "flex",
+      }}>
       <SwitchModeButton />
+      <Box sx={{
+        display: { xs: 'flex', sm: 'none' },
+      }}>
+      <DrawerComponent />
+      </Box>
+      </Box>
     </Box>
   )
 }

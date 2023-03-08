@@ -133,14 +133,14 @@ const Products = () => {
   return isSuccess ? (
     <Container>
       <Header>
-        <Text color={theme.palette.common.black}>Products</Text>
+        <Text color={theme.palette.text.primary}>Content title goes here</Text>
         <Groups>
           <FavoriteBorderIcon />
-          <Text margin='0 30px 0 10px ' fontSize='16px'>
+          <Text margin='0 30px 0 10px ' fontSize='16px' color={theme.palette.text.primary} >
             {liked?.length ?? 0} Ürün
           </Text>
           <ShoppingCartIcon />
-          <Text margin='0 30px 0 10px ' fontSize='16px'>
+          <Text margin='0 30px 0 10px ' fontSize='16px' color={theme.palette.text.primary}>
             {cart?.length ?? 0} Ürün
           </Text>
           <FavoriteButton

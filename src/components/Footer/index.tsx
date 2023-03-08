@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import { useTheme } from '@mui/material/styles'
 import Logo from '../Logo'
 import { InstagramSVG, FacebookSVG, LinkedinSVG } from './footerSVG'
 import { footerArray } from '../../data/footerLinks'
@@ -50,15 +51,15 @@ const Input = styled.input<any>`
   padding: 0 10px;
   border: none;
   outline: none;
+  background-color: ${(props: any) => (props.bgColor ? props.bgColor : '#fff')};
   ::placeholder,
   ::-webkit-input-placeholder {
-    color: #000;
+    color: ${(props: any) => (props.color ? props.color : '#000')};
     font-size: 16px;
     font-weight: 400;
   }
   :-ms-input-placeholder {
-    color: #000;
-    color: #000;
+    color: ${(props: any) => (props.color ? props.color : '#000')};
     font-size: 16px;
     font-weight: 400;
   }
@@ -79,6 +80,7 @@ const Button = styled.button<any>`
 const Footer = () => {
   const matchesTablet = useMediaQuery('(min-width: 1200px)')
   const matchesMobile = useMediaQuery('(max-width: 700px)')
+  const theme = useTheme()
   return (
     <FooterContainer>
       <FooterContainerInside>
@@ -109,7 +111,7 @@ const Footer = () => {
               display: 'flex',
             }}
           >
-            <Input type='text' placeholder='Email' />
+            <Input bgColor={theme.palette.background.default} color={theme.palette.text.primary} type='text' placeholder='Email' />
             <Button>Sign Up</Button>
           </div>
         </FooterLeftSide>

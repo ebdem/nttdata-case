@@ -1,3 +1,5 @@
+import React from 'react'
+import { useTheme } from '@mui/material/styles'
 import { IconButton } from '@mui/material'
 import './Card.scss'
 
@@ -12,6 +14,7 @@ interface CardProps {
 }
 
 export default function Card(props: CardProps) {
+  const theme = useTheme()
   return (
     <div className='card'>
       <div className='wrapper'>
@@ -44,7 +47,9 @@ export default function Card(props: CardProps) {
         </div>
         <div className='cardInfo'>
           <h1>{props.title}</h1>
-          <p className='date_'>{props.price} TL</p>
+          <p style={{
+            backgroundColor: theme.palette.mode === 'dark' ? theme.palette.grey[900] : "#E6EEF8",
+          }} className='date_'>{props.price} TL</p>
           <div>
             <div className='desc'>Description</div>
             <div className='content'>

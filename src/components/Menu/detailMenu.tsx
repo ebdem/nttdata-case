@@ -1,6 +1,7 @@
 import * as React from 'react'
 import Box from '@mui/material/Box'
 import styled from '@emotion/styled'
+import { useTheme } from '@mui/material/styles'
 
 const Text = styled.p<any>`
   font-size: ${(props: any) => (props.fontSize ? props.fontSize : '32px')};
@@ -12,15 +13,12 @@ const Text = styled.p<any>`
 `
 
 const DetailMenu = () => {
+  const theme = useTheme()
   return (
-    <Box
+   <div>
+     <Box
       sx={({ palette }) => ({
-        position: 'absolute',
-        top: '330px',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
         zIndex: 1000,
-        width: '80%',
         height: '400px',
         backgroundColor: palette.grey[100],
         display: 'flex',
@@ -32,25 +30,60 @@ const DetailMenu = () => {
           display: 'flex',
         }}
       >
-        <Box>
+        <Box
+          sx={{
+            margin:'30px 80px 0 40px'
+          }}
+        >
           <Text
-            lineHeight='19px'
-            color='#fff'
-            fontWeight={400}
-            fontSize='16px'
-            margin='24px 0 0 0 '
+            color={theme.palette.text.primary}
+            fontWeight={500}
+            fontSize='14px'
+            margin="0 0 12px 0"
           >
-            Lorem ipsum dolor sit amet consectetur. Auctor tempor pretium aliquam neque.
+            Header
           </Text>
+          {Array.from(Array(8).keys()).map((item, index) => (
+            <Text 
+            key={index}
+            color={theme.palette.text.primary}
+            fontWeight={400}
+            fontSize='14px'
+            margin="0 0 12px 0"
+          >
+            SubHeader
+          </Text>
+          ))}
         </Box>
-        <Box>
-          <h1>Detail Menu</h1>
+        <Box
+          sx={{
+            margin:'30px 80px 0 40px'
+          }}
+        >
+          <Text
+            color={theme.palette.text.primary}
+            fontWeight={500}
+            fontSize='14px'
+            margin="0 0 12px 0"
+          >
+            Header
+          </Text>
+          {Array.from(Array(8).keys()).map((item, index) => (
+            <Text 
+            key={index}
+            color={theme.palette.text.primary}
+            fontWeight={400}
+            fontSize='14px'
+            margin="0 0 12px 0"
+          >
+            SubHeader
+          </Text>
+          ))}
         </Box>
-      </Box>
-      <Box
+        <Box
         sx={{
           display: 'flex',
-          width: '50%',
+          width: '70%',
           height: '100%',
           justifyContent: 'center',
           alignItems: 'center',
@@ -58,15 +91,18 @@ const DetailMenu = () => {
       >
         <img
           style={{
-            width: '700px',
-            height: '240px',
-            margin: 'auto 0',
+            width: 'auto',
+            height: '40vh',
+            margin: 'auto 20px',
           }}
-          src='state.png'
+          src='menu-photo.jpg'
           alt='state'
         />
       </Box>
+      </Box>
+     
     </Box>
+   </div>
   )
 }
 
