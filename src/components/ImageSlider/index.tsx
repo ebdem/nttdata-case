@@ -43,12 +43,12 @@ const dotStyle = {
 }
 
 const ImageSlider = () => {
-  const [activeDot, setActiveDot] = useState<Number | any>(0)
+  const [activeDot, setActiveDot] = useState<number | any>(0)
   const query = useSelector((state: any) => state.category.category)
   const date = new Date()
   const hours = date.getHours()
 
-  const delay = 2500
+  const delay = 4500
   const timeoutRef = useRef(null as any)
 
   function resetTimeout() {
