@@ -46,7 +46,15 @@ export default function Card(props: CardProps) {
           )}
         </div>
         <div className='cardInfo'>
-          <h1>{props.title}</h1>
+          <a
+            style={{
+              color: theme.palette.mode === 'dark' ? 'white' : '#00254F',
+            }}
+            href='https://google.com'
+          >
+            {' '}
+            <h1>{props.title}</h1>
+          </a>
           <p
             style={{
               backgroundColor: theme.palette.mode === 'dark' ? theme.palette.grey[900] : '#E6EEF8',
