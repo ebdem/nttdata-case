@@ -7,8 +7,8 @@ CURRENT_USER=sudo
 DOCKER_COMPOSE?=docker-compose
 DOCKER_COMPOSE_RUN=$(DOCKER_COMPOSE) run --rm
 DOCKER_EXEC_TOOLS_APP=$(CURRENT_USER) docker exec -it $(DOCKER_NAME) sh
-NODE_INSTALL="yarn"
-SERVER_RUN="yarn dev"
+NODE_INSTALL="npm"
+SERVER_RUN="npm run dev"
 
 #
 # Exec containers
