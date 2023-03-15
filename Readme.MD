@@ -3,6 +3,12 @@
 
 Frontend Challenge
 
+## Demo
+
+[Live](https://nttdata-case.vercel.app/)
+
+[StoryBook](https://nttdata-case-storybook.netlify.app/)
+
 
 ## Used technologies
 
@@ -132,11 +138,6 @@ Run this project to deploy
 ```
 
   
-## Demo
-
-[Live](https://nttdata-case.vercel.app/)
-
-[StoryBook](https://nttdata-case-storybook.netlify.app/)
 
   
 ## Contribution
