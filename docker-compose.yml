@@ -7,6 +7,9 @@ services:
    ports:
      - 8000:8000
    working_dir: /srv/app
+   environment:
+     - MODE=development
+     - VITE_KEY=1Ot7wiOJwD97UtIbVc9qd5zRyOlvxYpdQzwdZa-TfWs
    volumes:
      - type: bind
        source: ./
