@@ -11,12 +11,12 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 import CompareArrowsIcon from '@mui/icons-material/CompareArrows'
 import DeleteIcon from '@mui/icons-material/Delete'
 import Button from '@mui/material/Button'
-import Grid from '@mui/material/Grid'
 import { addToCart, removeItem } from '../../redux/features/articleSlice'
 import Card from '../Card'
 import { useGetAllArticlesQuery, useUpdateNoteMutation } from '../../redux/features/articleAPI'
 import Loading from '../Loading'
 import CustomTab from '../Tabs'
+import useMediaQuery from '../../hooks/useMediaQuery'
 
 const Container = styled.div`
   display: flex;
@@ -65,6 +65,10 @@ const Products = () => {
   const [open, setOpen] = useState(false)
   const dispatch = useDispatch()
   const cart = useSelector((state: any) => state.cart.cart)
+  const matchesDesktop = useMediaQuery('(min-width: 1200px)')
+  const matchesTablet = useMediaQuery('(max-width: 1200px) and (min-width: 1020px)')
+  const matchesMobileUp = useMediaQuery('(max-width: 1020px) and (min-width: 700px)')
+  const matchesMobile = useMediaQuery('(max-width: 700px)')
 
   const [
     updateArticle,
@@ -156,7 +160,13 @@ const Products = () => {
       <div
         style={{
           display: 'grid',
-          gridTemplateColumns: 'auto auto auto auto',
+          gridTemplateColumns: matchesTablet
+            ? 'auto auto auto'
+            : matchesMobile
+            ? 'auto'
+            : matchesMobileUp
+            ? 'auto auto'
+            : 'auto auto auto auto',
         }}
       >
         {articles?.map((article) => {
