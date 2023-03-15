@@ -61,7 +61,7 @@ const FavoriteButton = styled.button<any>`
 
 const Products = () => {
   const theme = useTheme()
-  const [limit, setLimit] = useState(3)
+  const [limit, setLimit] = useState(4)
   const [open, setOpen] = useState(false)
   const dispatch = useDispatch()
   const cart = useSelector((state: any) => state.cart.cart)
@@ -153,18 +153,16 @@ const Products = () => {
           </FavoriteButton>
         </Groups>
       </Header>
-      <Grid
-        sx={{
-          width: '80%',
-          margin: '0 auto',
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'auto auto auto auto',
         }}
-        container
-        spacing={2}
       >
         {articles?.map((article) => {
           const itemInCart = cart?.find((item: any) => item.id === article.id)
           return (
-            <Grid key={article.avatar} item xs={12} sm={6} md={4}>
+            <div key={article.name} style={{ margin: 5 }}>
               <Card
                 likeIcon={
                   <FavoriteBorderIcon
@@ -214,13 +212,13 @@ const Products = () => {
               >
                 <CustomTab articles={liked} onSubmitHandler={onSubmitHandler} />
               </Drawer>
-            </Grid>
+            </div>
           )
         })}
-      </Grid>
+      </div>
       <Button
-        disabled={limit === 6}
-        onClick={() => setLimit((limit) => limit + 3)}
+        disabled={limit === 8}
+        onClick={() => setLimit((limit) => limit + 4)}
         sx={{
           marginTop: '50px',
           padding: '16px 32px',
